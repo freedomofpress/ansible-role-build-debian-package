@@ -15,7 +15,7 @@
       {% endfor %}
       See https://www.debian.org/doc/debian-policy/ch-controlfields.html
       for more information.
-  with_dict: build_debian_package_required_control_fields
+  with_dict: "{{ build_debian_package_required_control_fields }}"
   when: item.value is not defined or
         item.value == ""
 
@@ -29,7 +29,7 @@
       {% endfor %}
       See https://www.debian.org/doc/debian-policy/ch-controlfields.html
       for more information.
-  with_dict: build_debian_package_recommended_control_fields
+  with_dict: "{{ build_debian_package_recommended_control_fields }}"
   when: item.value is not defined or
         item.value == ""
 

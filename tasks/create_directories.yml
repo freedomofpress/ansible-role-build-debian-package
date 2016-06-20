@@ -16,7 +16,7 @@
   file:
     state: directory
     path: "{{ item.dest }}"
-  with_items: build_debian_package_files_directories
+  with_items: "{{ build_debian_package_files_directories }}"
   when: item.dest is defined and item.dest != ""
 
 - name: Copy required directories for packaging.
@@ -33,13 +33,13 @@
       - "--chmod=Dgo-w,Fgo-w"
       - "--no-owner"
       - "--super"
-  with_items: build_debian_package_files_directories
+  with_items: "{{ build_debian_package_files_directories }}"
 
 - name: Copy static files for packaging.
   copy:
     dest: "{{ build_debian_package_directory }}/{{ item.dest }}"
     src: "{{ item.src }}"
-  with_items: build_debian_package_extra_files
+  with_items: "{{ build_debian_package_extra_files }}"
 
 - name: Copy control file.
   template:
@@ -50,4 +50,4 @@
   file:
     state: absent
     path: "{{ build_debian_package_directory }}/{{ item }}"
-  with_items: build_debian_package_unwanted_files
+  with_items: "{{ build_debian_package_unwanted_files }}"
