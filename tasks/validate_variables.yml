@@ -8,28 +8,25 @@
 - name: Validate required fields for DEBIAN/control file.
   fail:
     msg: |
-      The Debian control field "{{ item.key }}" is not declared,
+      The Debian control field "{{ item }}" is not declared,
       but is required for building Debian packages. The list of required fields is:
-      {% for key, value in build_debian_package_required_control_fields.iteritems() %}
-        {{ key }}
+      {% for field in build_debian_package_required_control_fields %}
+        {{ field }}
       {% endfor %}
       See https://www.debian.org/doc/debian-policy/ch-controlfields.html
       for more information.
-  with_dict: "{{ build_debian_package_required_control_fields }}"
-  when: item.value is not defined or
-        item.value == ""
+  with_items: "{{ build_debian_package_required_control_fields }}"
+  when: item not in build_debian_package_control_fields
 
 - name: Validate recommended fields for DEBIAN/control file.
   debug:
     msg: |
-      The Debian control field "{{ item.key }}" is not declared,
+      The Debian control field "{{ item }}" is not declared,
       but is recommended for building Debian packages. The list of recommended fields is:
-      {% for key, value in build_debian_package_recommended_control_fields.iteritems() %}
-        {{ key }}
+      {% for field in build_debian_package_recommended_control_fields %}
+        {{ field }}
       {% endfor %}
       See https://www.debian.org/doc/debian-policy/ch-controlfields.html
       for more information.
-  with_dict: "{{ build_debian_package_recommended_control_fields }}"
-  when: item.value is not defined or
-        item.value == ""
-
+  with_items: "{{ build_debian_package_recommended_control_fields }}"
+  when: item not in build_debian_package_control_fields

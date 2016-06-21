@@ -24,26 +24,18 @@ build_debian_package_unwanted_files: []
 # List of system packages to install on the build host prior to building.
 build_debian_package_extra_dependencies: []
 
-# DEBIAN/control fields
-build_debian_package_name: dummy-package
-build_debian_package_source: ""
-build_debian_package_section: ""
-build_debian_package_version: 0.1
-build_debian_package_priority: optional
-build_debian_package_arch: amd64
-build_debian_package_maintainer: ""
-build_debian_package_homepage: ""
-build_debian_package_depends: []
-build_debian_package_conflicts: []
-build_debian_package_replaces: []
-
-# If using multiline YAML, use the "line folding" operator '>-' to strip
-# the trailing newline. Otherwise dpkg will error out when it encounters
-# a blank line in the control file.
-build_debian_package_description: ""
+# DEBIAN/control fields for package. Some are required, some recommended.
+# See here for details: https://www.debian.org/doc/debian-policy/ch-controlfields.html
+build_debian_package_control_fields:
+  Package: dummy-package
+  Version: 0.1
+  Priority: optional
+  Architecture: amd64
+  Maintainer: SomeOrganization
+  Description: This is an empty Debian package.
 
 # Build directories.
-build_debian_package_directory: /tmp/{{ build_debian_package_name }}-{{ build_debian_package_version }}-{{ build_debian_package_arch }}
+build_debian_package_directory: /tmp/{{ build_debian_package_control_fields.Package }}-{{ build_debian_package_control_fields.Version }}-{{ build_debian_package_control_fields.Architecture }}
 build_debian_package_deb_file: "{{ build_debian_package_directory }}.deb"
 
 # Support for pip wheel archives. Skipped by default. Paths should be relative

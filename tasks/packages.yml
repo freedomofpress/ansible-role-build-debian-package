@@ -6,7 +6,7 @@
 # if the default vars haven't been overridden.
 - name: Declare name of package.
   debug:
-    msg: Now building {{ build_debian_package_name }}.
+    msg: Now building {{ build_debian_package_control_fields.Package }}.
 
 - name: Install build dependencies.
   apt:
