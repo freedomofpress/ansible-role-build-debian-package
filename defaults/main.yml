@@ -26,6 +26,8 @@ build_debian_package_extra_dependencies: []
 
 # DEBIAN/control fields for package. Some are required, some recommended.
 # See here for details: https://www.debian.org/doc/debian-policy/ch-controlfields.html
+# Note that several fields such as Conflicts, Depends, and Removes are expected
+# to be lists, rather than strings. See `vars/main.yml` for more info.
 build_debian_package_control_fields:
   Package: dummy-package
   Version: 0.1
