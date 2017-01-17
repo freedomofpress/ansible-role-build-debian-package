@@ -66,10 +66,25 @@ Example Playbook
 - name: Build Debian package.
   hosts: buildserver
   become: yes
+  vars:
+    deb_package_dependencies:
+      - emacs
+      - vim
   roles:
     - role: freedomofpress.build-debian-package
-  tags: build
+      build_debian_package_control_fields:
+        Package: wizard-hat
+        Version: 0.7.2
+        Priority: optional
+        Architecture: amd64
+        Depends: "{{ deb_package_dependencies|join(',') }}"
+        Maintainer: Yours Truly
+        Description: A wizard's true power lies in knowing the names of things.
+      tags: build
 ```
+
+The example above lists only dependencies and no files,
+creating a metapackage.
 
 Further Reading
 ---------------
