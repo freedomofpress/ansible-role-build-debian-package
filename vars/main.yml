@@ -28,10 +28,3 @@ build_debian_package_required_control_fields:
 build_debian_package_recommended_control_fields:
   - Section
   - Priority
-
-# Certain control fields can accept a list, which should be comma-separated.
-# This list var provides a lookup table for special handling.
-build_debian_package_list_vars:
-  - Depends
-  - Conflicts
-  - Replaces
