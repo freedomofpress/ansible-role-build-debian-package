@@ -1,5 +1,8 @@
 ---
 # tasks file for build-debian-package
+- include: include_distro_vars.yml
+  tags: vars
+
 - include: validate_variables.yml
   tags: validate
 

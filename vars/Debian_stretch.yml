@@ -1,0 +1,5 @@
+---
+__build_debian_package_base_dependencies:
+  - build-essential
+  - gcc-6
+  - make

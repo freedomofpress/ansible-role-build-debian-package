@@ -12,10 +12,9 @@ build_debian_package_files_directories: []
 # Simple files to to copy. Again, use a dict with "src" and "dest" attributes.
 build_debian_package_extra_files: []
 
-build_debian_package_base_dependencies:
-  - build-essential
-  - gcc-4.8
-  - make
+# Using distro-specific vars files to set the correct gcc version.
+# The vars include will be skipped if you define this var.
+# build_debian_package_base_dependencies: []
 
 # List of filepaths that will be removed from the package tree prior to building.
 # It's safer to remove as a separate task than to use an rsync filter.
